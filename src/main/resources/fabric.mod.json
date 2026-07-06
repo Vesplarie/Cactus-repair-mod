@@ -1,0 +1,24 @@
+{
+	"schemaVersion": 1,
+	"id": "cactusrepair",
+	"version": "${version}",
+	"name": "Cactus Repair",
+	"description": "Кактус чинит предметы с прочностью вместо их уничтожения, а из железного голема выпадает слиток за каждый удар голой рукой.",
+	"authors": [],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.cactusrepair.CactusRepairMod"
+		]
+	},
+	"mixins": [
+		"cactusrepair.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.0",
+		"fabric-api": "*",
+		"minecraft": "~1.21.7",
+		"java": ">=21"
+	}
+}
