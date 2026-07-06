@@ -3,7 +3,8 @@
 	"package": "com.example.cactusrepair.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ItemEntityMixin"
+		"ItemEntityMixin",
+		"PiglinBrainMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
