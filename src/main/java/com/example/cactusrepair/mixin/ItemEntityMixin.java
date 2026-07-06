@@ -16,6 +16,8 @@ public abstract class ItemEntityMixin {
 	/**
 	 * Если предмет с прочностью получает урон от кактуса —
 	 * вместо уничтожения полностью его чиним и отменяем урон.
+	 * Чиним через setStack (замену стака целиком), чтобы клиент
+	 * получил обновление и перерисовал текстуру (важно для элитр).
 	 */
 	@Inject(
 			method = "damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z",
@@ -31,7 +33,9 @@ public abstract class ItemEntityMixin {
 		ItemStack stack = self.getStack();
 		if (stack.isDamageable()) {
 			if (stack.getDamage() > 0) {
-				stack.setDamage(0); // полный ремонт
+				ItemStack repaired = stack.copy();
+				repaired.setDamage(0); // полный ремонт
+				self.setStack(repaired); // синхронизация с клиентом -> текстура обновится
 			}
 			cir.setReturnValue(false); // кактус не наносит урон предмету
 		}
