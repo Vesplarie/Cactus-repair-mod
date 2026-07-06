@@ -34,13 +34,12 @@ public abstract class PiglinBrainMixin {
 	}
 
 	/**
-	 * Если бартер шёл за самородки — всегда выдаём алмазы,
-	 * по одному за каждый самородок в стаке.
+	 * За самородки всегда выпадает полный стак алмазов (64).
 	 */
 	@Inject(method = "getBarteredItem", at = @At("HEAD"), cancellable = true)
 	private static void cactusrepair$diamondsForNuggets(CallbackInfoReturnable<List<ItemStack>> cir) {
 		if (cactusrepair$lastChecked.isOf(Items.GOLD_NUGGET)) {
-			cir.setReturnValue(List.of(new ItemStack(Items.DIAMOND, cactusrepair$lastChecked.getCount())));
+			cir.setReturnValue(List.of(new ItemStack(Items.DIAMOND, 64)));
 		}
 	}
 }
